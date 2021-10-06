@@ -9,26 +9,23 @@ import SwiftUI
 
 struct StoryView: View {
     var body: some View {
-     //   Image("woman1")
-     //       .resizable()
-     //       .scaledToFit()
-     //       .clipShape(Circle())
-     //       .overlay(Circle().stroke(Color.gray, lineWidth: 8))
         ZStack {
-            Circle()
-                     .fill(Color.gray)
-                     .frame(width: 50, height: 50)
+           
+            RoundedRectangle(cornerRadius: 18, style: .circular)
+                .fill(Color.blue)
+                     .frame(width: 60, height: 60)
                  
-                Circle()
-                .stroke(Color.accentColor,lineWidth: 1.5)
-                .frame(width: 50.5, height: 50.5)
+            RoundedRectangle(cornerRadius: 18, style: .circular)
+                .fill(Color.secondary)
+                .frame(width: 58, height: 58)
                  
                  
                  Image("woman1")
                      .resizable()
-                     .scaledToFit()
-                     .frame(width: 48)
-                 .clipShape(Circle())
+                     .offset(x: 0, y: 10)
+                     .scaledToFill()
+                     .frame(width: 55, height: 55)
+                     .clipShape(RoundedRectangle(cornerRadius: 18, style: .circular))
         }
        
     }

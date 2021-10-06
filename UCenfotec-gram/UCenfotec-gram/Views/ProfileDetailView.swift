@@ -18,7 +18,7 @@ struct ProfileDetailView: View {
             VStack(alignment: .leading) {
                 Text("Lauren Cox")
                     .font(.title2)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.primary.opacity(0.65))
                     .fontWeight(.heavy)
                 Text("Paris, France")
                     .font(.footnote)

@@ -25,7 +25,7 @@ struct FeedHolderView: View {
                 }
                 .padding(.horizontal,6)
                 .padding(.vertical, 6)
-                .background(RoundedRectangle(cornerRadius: 40).fill(Color.white.opacity(0.265)))
+                .background(RoundedRectangle(cornerRadius: 40).fill(Color.white.opacity(0.65)))
                 
                 .padding()
                 Spacer()
