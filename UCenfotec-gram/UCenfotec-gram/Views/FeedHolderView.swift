@@ -31,7 +31,7 @@ struct FeedHolderView: View {
                 Spacer()
                 ActionableBarView()
                     .padding()
-                //Spacer()
+                Spacer()
             }
         }
     }

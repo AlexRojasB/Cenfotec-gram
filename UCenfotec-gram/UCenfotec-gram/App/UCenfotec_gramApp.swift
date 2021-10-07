@@ -11,7 +11,7 @@ import SwiftUI
 struct UCenfotec_gramApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
