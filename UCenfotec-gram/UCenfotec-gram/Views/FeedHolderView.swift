@@ -19,9 +19,13 @@ struct FeedHolderView: View {
                 HStack {
                     ProfileDetailView()
                     Spacer()
-                    Image(systemName: "gearshape")
-                        .foregroundColor(Color.white)
+                    Image(systemName: "ellipsis")
+                        .frame(width: 20, height: 50)
+                        .rotationEffect(.degrees(-90))
+                        .foregroundColor(.secondary)
                         .shadow(color: Color.black, radius: 8, x: 2, y: 2)
+                        .padding(.horizontal)
+                    
                 }
                 .padding(.horizontal,6)
                 .padding(.vertical, 6)

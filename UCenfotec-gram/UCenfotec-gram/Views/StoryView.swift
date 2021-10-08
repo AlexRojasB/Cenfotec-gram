@@ -17,7 +17,7 @@ struct StoryView: View {
                          .frame(width: 60, height: 60)
                      
                 RoundedRectangle(cornerRadius: 18, style: .circular)
-                    .fill(Color.secondary)
+                    .fill(Color.white)
                     .frame(width: 58, height: 58)
                      
                      

@@ -14,42 +14,28 @@ struct ContentView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
                         VStack {
-                            ZStack {
-                               
-                                     
-                                RoundedRectangle(cornerRadius: 18, style: .circular)
-                                    .strokeBorder(lineWidth: 1, antialiased: true)
-                                    .foregroundColor(.secondary)
-                                    .frame(width: 58, height: 58)
-                                     Image(systemName: "plus")
-                                         .frame(width: 55, height: 55)
-                                         .clipShape(RoundedRectangle(cornerRadius: 18, style: .circular))
-                                         .foregroundColor(.secondary)
-                            }//: ZStack
-                            Text("My Story")
-                                .font(.footnote)
-                                .foregroundColor(.secondary)
+                        RoundedIconView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
+                        StoryView()
                         }//: VStack
-                        StoryView()
-                        StoryView()
-                        StoryView()
-                        StoryView()
-                        StoryView()
-                        StoryView()
-                        StoryView()
-                        StoryView()
-                        StoryView()
                     }//: HStack
                 }//: ScrollView
-                .padding()
+                .padding(.horizontal)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: -(UIScreen.main.bounds.height / 4.5)) {
                         FeedHolderView()
                         FeedHolderView()
                         FeedHolderView()
                         FeedHolderView()
-                    }
-                }.padding()
+                    }//: VStack
+                }.padding(.horizontal)
             }//: VStack
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{

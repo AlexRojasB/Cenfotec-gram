@@ -22,7 +22,12 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: "person")
                 }//: TabItem
+        }//: TabView
+        .onAppear() {
+            UITabBar.appearance().backgroundColor = .white
+            UITabBar.appearance().barTintColor = .secondaryLabel
         }
+        
     }
 }
 
