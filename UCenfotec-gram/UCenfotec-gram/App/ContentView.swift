@@ -13,7 +13,7 @@ struct ContentView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
-                        VStack {
+                        HStack {
                         RoundedIconView()
                         StoryView()
                         StoryView()
