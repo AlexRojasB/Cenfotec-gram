@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var feedVM = FeedViewModel()
+    @EnvironmentObject var authentication: Authentication
+
     var body: some View {
         NavigationView() {
             VStack {
@@ -29,13 +32,20 @@ struct ContentView: View {
                 }//: ScrollView
                 .padding(.horizontal)
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: -(UIScreen.main.bounds.height / 4.5)) {
-                        FeedHolderView()
-                        FeedHolderView()
-                        FeedHolderView()
-                        FeedHolderView()
+                        
+                    LazyVStack(spacing: -(UIScreen.main.bounds.height / 4.5)) {
+                        if self.feedVM.isLoading {
+                            ProgressView()
+                        }
+                        ForEach(feedVM.feeds) { feed in
+                            FeedHolderView(feed: feed)
+                        }
+                       
                     }//: VStack
                 }.padding(.horizontal)
+                    .onAppear(perform: {
+                        feedVM.loadFeeds()
+                    })
             }//: VStack
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
@@ -45,7 +55,16 @@ struct ContentView: View {
                             .font(.title)
                             .fontWeight(.semibold)
                         Spacer()
-                        Image(systemName: "message.fill")
+                        Button {
+                            feedVM.cleanToken{ success in
+                                authentication.updateValidation(success: success)
+                            }
+                        } label: {
+                            Text("Logout")
+                                .font(.footnote)
+                                .foregroundColor(.blue)
+                        }
+
                     }//: HStack
                 }//: ToolbarItem
             }//: Toolbar

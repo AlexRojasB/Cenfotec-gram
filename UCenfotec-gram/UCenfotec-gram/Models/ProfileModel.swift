@@ -6,9 +6,8 @@
 //
 
 import Foundation
-struct ProfileModel:  Codable {
+struct ProfileModel: Codable {
     var name: String
-    var age: Int
+    var birthday: String
     var picture: String
-    var userInfo: UserModel
 }

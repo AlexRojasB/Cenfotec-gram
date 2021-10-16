@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SigninView: View {
-    @State var email: String = ""
+    @StateObject private var loginVM = AccountViewModel()
+    @EnvironmentObject var authentication: Authentication
     var body: some View {
         VStack {
-            Image("woman2")
+            Image("loginHeader")
                 .resizable()
                 .frame(height: 350)
                 .scaledToFit()
@@ -55,23 +56,26 @@ struct SigninView: View {
                     .foregroundColor(.secondary)
                 VStack(spacing:12) {
                     HStack {
-                        Text("Name")
+                        Text("Nickname")
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         Spacer()
                     }//: HStack
-                    TextField("Alexander Rojas", text: $email)
+                    TextField("xzaokyx", text: $loginVM.nick)
+                        .autocapitalization(.none)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10)
                                         .stroke(lineWidth: 1)
                                         .foregroundColor(.secondary))
                     HStack {
-                        Text("Username or Email")
+                        Text("Email")
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         Spacer()
                     }//: HStack
-                    TextField("@ Email ID", text: $email)
+                    TextField("@ Email ID", text: $loginVM.email)
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10)
                                         .stroke(lineWidth: 1)
@@ -83,14 +87,21 @@ struct SigninView: View {
                         Spacer()
                        
                     }//: HStack
-                    TextField("********", text: $email)
+                    SecureField("********", text: $loginVM.password)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10)
                                         .stroke(lineWidth: 1)
                                         .foregroundColor(.secondary))
                 }//: VStack
                 VStack(spacing: 20) {
-                    Button(action: {}) {
+                    if loginVM.isLoading {
+                        ProgressView()
+                    }
+                    Button(action: {
+                        loginVM.SignInAccount{ success in
+                            authentication.updateValidation(success: success)
+                        }
+                    }) {
                         Text("SIGN UP")
                             .fontWeight(.bold)
                             .foregroundColor(.white)

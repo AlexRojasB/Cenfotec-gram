@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var authentication: Authentication
+    
     var body: some View {
         TabView {
             ContentView()
+                .environmentObject(authentication)
                 .tabItem {
                     Image(systemName:"house.fill")
                 }//: TabItem
-            ProfileView()
+            PreviewPostFeedView()
                 .tabItem {
                     Image(systemName: "plus.diamond")
                 }//: TabItem

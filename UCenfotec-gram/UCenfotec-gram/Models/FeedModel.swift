@@ -12,5 +12,4 @@ struct FeedModel: Codable, Identifiable {
     var likes: Int
     var comments: [CommentModel]
     var owner: OwnerModel
-    var updatedAt: Date
 }

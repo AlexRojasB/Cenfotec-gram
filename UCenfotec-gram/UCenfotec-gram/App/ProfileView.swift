@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject private var profileVM = ProfileViewModel()
+    
     var body: some View {
         NavigationView() {
             VStack(spacing: 6) {
@@ -24,7 +26,7 @@ struct ProfileView: View {
                          .padding(.top, 10)
                 }//: HStack
                 HStack {
-                    Text("Lauren Crox | Designer")
+                    Text(profileVM.user?.profile?.name ?? "welcome user")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundColor(.primary)
@@ -87,7 +89,20 @@ struct ProfileView: View {
                         RoundedIconView()
                     }
                 }
-                // Staggered View https://www.youtube.com/watch?v=VrwINubmq5g&ab_channel=Kavsoft
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack(spacing: -(UIScreen.main.bounds.height / 4.5)) {
+                        if self.profileVM.isLoading {
+                            ProgressView()
+                        }
+                        ForEach(profileVM.feeds) { feed in
+                            FeedHolderView(feed: feed)
+                        }
+                       
+                    }//: VStack
+                }.padding(.horizontal)
+                    .onAppear(perform: {
+                        profileVM.loadFeeds()
+                    })
                 Spacer()
             }//: VStack
             .padding(20)

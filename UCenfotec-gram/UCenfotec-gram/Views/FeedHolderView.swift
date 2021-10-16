@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct FeedHolderView: View {
+    let feed: FeedModel
+    
     var body: some View {
         ZStack {
-            Image("woman1")
-                .resizable()
-                .scaledToFill()
-                .cornerRadius(25)
-            
+            if let bannerURL = URL(string: feed.picture) {
+                Image("woman").data(url: bannerURL)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 600)
+                    .cornerRadius(25)
+            }
             VStack() {
                 HStack {
-                    ProfileDetailView()
+                    ProfileDetailView(feed: feed)
                     Spacer()
                     Image(systemName: "ellipsis")
                         .frame(width: 20, height: 50)
@@ -29,22 +33,14 @@ struct FeedHolderView: View {
                 }
                 .padding(.horizontal,6)
                 .padding(.vertical, 6)
-                .background(RoundedRectangle(cornerRadius: 40).fill(Color.white.opacity(0.65)))
+                .background(RoundedRectangle(cornerRadius: 40).fill(Color.gray.opacity(0.65)))
                 
                 .padding()
                 Spacer()
-                ActionableBarView()
+                ActionableBarView(likeNumnber: feed.likes, commentNumber: feed.comments.count)
                     .padding()
                 Spacer()
             }
         }
-    }
-}
-
-struct FeedHolderView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedHolderView()
-            .previewLayout(.sizeThatFits)
-            .padding()
     }
 }

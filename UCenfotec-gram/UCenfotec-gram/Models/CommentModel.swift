@@ -10,5 +10,4 @@ struct CommentModel: Identifiable, Codable {
     var id: String
     var owner: OwnerModel
     var comment: String
-    var updatedAt: Date
 }

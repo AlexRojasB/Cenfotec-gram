@@ -8,30 +8,25 @@
 import SwiftUI
 
 struct ProfileDetailView: View {
+    let feed: FeedModel
     var body: some View {
         HStack {
-            Image("woman2")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 48, height: 48)
-                .clipShape(Circle())
+            if let bannerURL = URL(string: feed.owner.picture) {
+                Image(systemName: "square.fill").data(url: bannerURL)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 48, height: 48)
+                    .clipShape(Circle())
+            }
             VStack(alignment: .leading) {
-                Text("Lauren Cox")
+                Text(feed.owner.name)
                     .font(.title2)
                     .foregroundColor(Color.primary.opacity(0.65))
                     .fontWeight(.heavy)
-                Text("Paris, France")
+                Text(feed.owner.location)
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
         }
-    }
-}
-
-struct ProfileDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileDetailView()
-            .previewLayout(.sizeThatFits)
-            .padding()
     }
 }

@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct ActionableBarView: View {
+    let likeNumnber: Int
+    let commentNumber: Int
     var body: some View {
         HStack {
             HStack {
                 Image(systemName: "heart.fill")
                     .foregroundColor(Color.red)
-                Text("3.9k")
+                Text("\(likeNumnber)")
                     .foregroundColor(.gray)
             }
             HStack {
                 Image(systemName: "message.circle.fill")
                     .foregroundColor(Color.gray)
-                Text("1.9k")
+                Text("\(commentNumber)")
                     .foregroundColor(.gray)
             }
             
@@ -39,13 +41,10 @@ struct ActionableBarView: View {
 struct ActionableBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActionableBarView()
+            ActionableBarView(likeNumnber: 100, commentNumber: 342)
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             .padding()
-            ActionableBarView()
-                .previewLayout(.sizeThatFits)
-                .padding()
         }
     }
 }
